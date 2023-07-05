@@ -17,6 +17,8 @@ namespace Practical_17.Data
 
 		public DbSet<UserRole> UserRoles { get; set; }
 
+		public DbSet<Student> Students { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<UserRole>()
@@ -35,8 +37,6 @@ namespace Practical_17.Data
 			modelBuilder.SeedRole();
 			modelBuilder.SeedAdmin();
 			modelBuilder.SeedUserRole();
-
-			modelBuilder.SeedUser();
 
 		}
 

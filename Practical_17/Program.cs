@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Practical_17.Data;
 
@@ -16,6 +17,14 @@ namespace Practical_17
 			builder.Services.AddDbContext<DatabaseContext>(options =>
 			{
 				options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+			});
+
+			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+			{
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+				options.AccessDeniedPath = "/Account/AccessDenied";
+				options.LoginPath = "/Account/Login";
+				options.LogoutPath = "/Account/Logout";
 			});
 
 			var app = builder.Build();

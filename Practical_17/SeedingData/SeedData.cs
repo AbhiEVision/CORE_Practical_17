@@ -5,6 +5,7 @@ namespace Practical_17.SeedingData
 {
 	public static class SeedData
 	{
+
 		public static void SeedRole(this ModelBuilder builder)
 		{
 			builder.Entity<Role>().HasData(
