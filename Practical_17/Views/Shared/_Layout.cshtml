@@ -9,65 +9,70 @@
 	<link rel="stylesheet" href="~/Practical_17.styles.css" asp-append-version="true" />
 	<link rel="icon" href="/favicon.ico">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
 </head>
-<body style="height : 100% !important">
-	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-		
-			<a class="navbar-brand col-sm-3 col-md-2 mr-0" asp-area="" asp-controller="Home" asp-action="Index">Practical_17</a>
-			@*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>*@
-			@*<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-			<ul class="navbar-nav flex-grow-1">
-			<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-			</li>
-			</ul>
-			</div>*@
-		
-	</nav>
-	<div class="container-fluid" style="height:100%">
-		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-				<div class="sidebar-sticky">
-					<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+<body >
+
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+			<div class="container">
+				<a class="navbar-brand" asp-action="Index" asp-controller="Home">Practical 17</a>
+				@*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>*@
+				@*<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+					<ul class="navbar-nav flex-grow-1">
 						<li class="nav-item">
-							<a asp-action="Index" asp-controller="Home" class="nav-link align-middle px-0">
-								<i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-							</a>
+							<a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
 						</li>
 					</ul>
-				</div>
-				@*<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-					<a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-						<span class="fs-5 d-none d-sm-inline">Menu</span>
-					</a>
-					
 				</div>*@
-			</nav>
-
-			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-				<div class="">
-					@RenderBody()
-
+				<div class="navabar-right ms-auto">
+					
+					<ul class="navbar-nav">
+						@if (User.Identity.IsAuthenticated)
+						{
+							<li class="nav-item ">
+								@User.Identity.Name
+							</li>
+							<li class="nav-item ms-2 ">
+								<a class="text-dark" asp-action="Logout" asp-controller="Account">Logout</a>
+							</li>
+						}
+						else
+						{
+							<li class="nav-item ">
+								<a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+							</li>
+						}
+						
+					</ul>
 				</div>
-			</main>
-
-		</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
 	</div>
-	@*
+
 	<footer class="border-top footer text-muted">
 	<div class="container">
-	&copy; 2023 - Practical_17 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+	&copy; 2023 - Practical_17 - Simform Solutions
 	</div>
-	</footer>*@
+	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
+	
 </body>
 </html>
