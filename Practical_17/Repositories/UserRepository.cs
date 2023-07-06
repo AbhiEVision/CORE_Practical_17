@@ -16,9 +16,9 @@ namespace Practical_17.Repositories
             _db = db;
         }
 
-        public async Task RegisterUserAsync(User user)
+        public async Task RegisterUserAsync(RegisterViewModel user)
         {
-            _db.Users.Add(user);
+            _db.Users.Add(ChangeViewModelToModel(user));
             await _db.SaveChangesAsync();
             User temp = await _db.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
             if (temp != null)
@@ -68,6 +68,22 @@ namespace Practical_17.Repositories
             return roles.ToList();
         }
 
+        private User ChangeViewModelToModel(RegisterViewModel model)
+        {
+            User user = new User()
+            {
+                Id = model.Id,
+                Email = model.Email,
+                Password = model.Password,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                MobileNumber = model.MobileNumber,
+            };
+
+
+
+            return user;
+        }
 
     }
 }

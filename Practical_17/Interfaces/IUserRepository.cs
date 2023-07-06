@@ -6,7 +6,7 @@ namespace Practical_17.Interfaces
 {
     public interface IUserRepository
     {
-        Task RegisterUserAsync(User user);
+        Task RegisterUserAsync(RegisterViewModel user);
 
         Task<UserLoginStatus> LoginUserAsync(LoginViewModel model);
 

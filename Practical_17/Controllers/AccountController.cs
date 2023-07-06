@@ -25,10 +25,15 @@ namespace Practical_17.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterAsync(User user)
+        public async Task<IActionResult> RegisterAsync(RegisterViewModel user)
         {
-            await _repository.RegisterUserAsync(user);
-            return RedirectToAction(nameof(Login));
+            if (ModelState.IsValid)
+            {
+                await _repository.RegisterUserAsync(user);
+                return RedirectToAction(nameof(Login));
+
+            }
+            return View(user);
         }
 
 
