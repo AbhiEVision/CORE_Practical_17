@@ -10,17 +10,17 @@ namespace Practical_17.Models
 
 		[Required]
 		[StringLength(50)]
-		public string Name { get; set; }
+		public required string Name { get; set; }
 
 		[Required]
 		[StringLength(50)]
 		[DataType(DataType.EmailAddress)]
-		public string Email { get; set; }
+		public required string Email { get; set; }
 
 		[Required]
 		[StringLength(50)]
 		[DataType(DataType.Password)]
-		public string Password { get; set; }
+		public required string Password { get; set; }
 
 		public virtual ICollection<UserRole> UserRoles { get; set; }
 	}

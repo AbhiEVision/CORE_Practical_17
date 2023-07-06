@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Practical_17.Models;
 using Practical_17.SeedingData;
+using Practical_17.ViewDataModel;
 
 namespace Practical_17.Data
 {
@@ -39,6 +40,10 @@ namespace Practical_17.Data
 			modelBuilder.SeedUserRole();
 
 		}
+
+		public DbSet<Practical_17.ViewDataModel.RegisterViewModel> RegisterViewModel { get; set; } = default!;
+
+		public DbSet<Practical_17.ViewDataModel.LoginViewModel> LoginViewModel { get; set; } = default!;
 
 	}
 }
